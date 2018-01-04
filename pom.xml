@@ -1,0 +1,65 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>bd</groupId>
+    <artifactId>hibernate-test</artifactId>
+    <version>1</version>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <properties>
+        <hibernate.version>5.2.12.Final</hibernate.version>
+        <hibernate.anotation.version>3.5.6-Final</hibernate.anotation.version>
+        <postgresql.version>42.1.4</postgresql.version>
+        <log4jdbc.version>1.2</log4jdbc.version>
+        <log4j.version>1.2.17</log4j.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-annotations</artifactId>
+            <version>${hibernate.anotation.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgresql.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.googlecode.log4jdbc</groupId>
+            <artifactId>log4jdbc</artifactId>
+            <version>${log4jdbc.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.5.6</version>
+        </dependency>
+
+    </dependencies>
+</project>
