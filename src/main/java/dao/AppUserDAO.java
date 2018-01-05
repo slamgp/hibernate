@@ -3,13 +3,14 @@ package dao;
 import enttity.AppUser;
 
 import java.util.List;
+import java.util.Set;
 
 public interface AppUserDAO {
     //CRUD operation
     //create block
     void create(AppUser user);
     //read block
-    List<AppUser> allAppUser();
+    Set<AppUser> allAppUser();
     AppUser getById (int id);
     //update block
     void update(AppUser user);

@@ -2,15 +2,22 @@ import bl.HibernateUtil;
 import enttity.AppUser;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
-import org.hibernate.query.Query;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 import java.util.Set;
 import java.util.TreeSet;
 
 public class EntryHibernate {
     public static void main (String[] args){
+
         final Logger loger = Logger.getLogger(EntryHibernate.class.getName());
-        Session session = HibernateUtil.getSessionFactory().openSession();
+       Session session = HibernateUtil.getSessionFactory().openSession();
+
+       // EntityManagerFactory ent = Persistence.createEntityManagerFactory("i-profile");
+     //   EntityManager entityManager = ent.createEntityManager();
       /* session.beginTransaction();
 
         AppUser user = new AppUser();
@@ -61,14 +68,29 @@ public class EntryHibernate {
 
         session.refresh(user);
         session.refresh(user2);*/
-        Query query = session.createQuery(" from AppUser as users Left  JOIN FETCH users.reviews");
-        Set<AppUser> users = new TreeSet<>(query.list());
-        loger.info("RESULTTTTTTTTTTTTTT  1");
-        users.stream().forEach(s->loger.info(s));
+        Query query = session.createQuery("from AppUser as users Left  JOIN FETCH users.reviews");
+      //  query.setParameter(0, 1);
+        Set<AppUser> users = new TreeSet<>(query.getResultList());
+        loger.info("RESULTTTTTTTTTTTTTT");
+        session.beginTransaction();
+        users.stream().forEach(s ->
+        {
+            loger.info("before update");
+            loger.info(s);
+            s.setFirst_name("kkk");
+         //   session.update(s);
+          //  session.flush();
+            session.refresh(s);
+            loger.info("after update");
+            loger.info(s);
+        }
+        );
+        loger.info("sleep before commit ");
 
+        session.getTransaction().commit();
+        loger.info("sleep after commit ");
 
-
-
+        session.clear();
         HibernateUtil.shutDown();
     }
 }
